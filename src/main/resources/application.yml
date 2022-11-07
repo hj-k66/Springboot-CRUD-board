@@ -8,3 +8,8 @@ spring:
     url: jdbc:mysql://localhost:3306/likelion-db
     username: root
     password: 1234
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+    hibernate.ddl-auto: validate
