@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,6 +22,18 @@ public class ArticleController {
 
     public ArticleController(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
+    }
+
+    @GetMapping("")
+    public String index(){
+        return "redirect:/articles/list";
+    }
+
+    @GetMapping(value = "/list")
+    public String getList(Model model){
+        List<Article> articles = articleRepository.findAll();
+        model.addAttribute("articles", articles);
+        return "articles/list";
     }
 
     @GetMapping(value = "/{id}")
@@ -44,7 +57,7 @@ public class ArticleController {
         log.info(articleDto.toString());
         Article article = articleDto.toEntity();
         articleRepository.save(article);
-        return "";
+        return "redirect:/articles/" + article.getId();
     }
 
 
