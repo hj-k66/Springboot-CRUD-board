@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/articles")
 @Slf4j
 public class ArticleController {
-
-
     private final ArticleRepository articleRepository;
 
     public ArticleController(ArticleRepository articleRepository) {
