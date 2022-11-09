@@ -1,10 +1,10 @@
 {{>layout/header}}
 
 <div>
-    이 페이지는 show입니다.
     {{#article}}
         {{id}} {{title}} {{content}}
     {{/article}}
+    <a href="articles/{{id}}/edit" class="btn btn-primary">Edit</a>
     <a href="/articles/new" class="btn btn-primary stretched-link">new article</a>
     <a href="/articles" class="btn btn-primary stretched-link">article list</a>
 </div>
