@@ -24,6 +24,17 @@ public class ArticleController {
         this.articleRepository = articleRepository;
     }
 
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable Long id, Model model){
+        Optional<Article> optionalArticle = articleRepository.findById(id);
+        if(optionalArticle.isEmpty()){
+            model.addAttribute("message", String.format("%d가 없습니다.", id));
+            return "articles/error";
+        }
+        model.addAttribute("article", optionalArticle.get());
+        return "articles/edit";
+    }
+
     @GetMapping("")
     public String index(){
         return "redirect:/articles/list";
