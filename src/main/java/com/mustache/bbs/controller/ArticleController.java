@@ -6,10 +6,7 @@ import com.mustache.bbs.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +19,14 @@ public class ArticleController {
 
     public ArticleController(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
+    }
+    @PostMapping("{id}/update")
+    public String update(@PathVariable Long id, ArticleDto articleDto, Model model){
+        log.info("title:{}, content:{}", articleDto.getTitle(), articleDto.getContent());
+        Article article = articleRepository.save(articleDto.toEntity());
+        model.addAttribute("article", article);
+        return String.format("redirect:/articles/%d", article.getId());
+
     }
 
     @GetMapping("/{id}/edit")
