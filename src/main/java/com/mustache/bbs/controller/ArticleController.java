@@ -20,7 +20,13 @@ public class ArticleController {
     public ArticleController(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
     }
-    @PostMapping("{id}/update")
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable Long id){
+        articleRepository.deleteById(id);
+        return "redirect:/articles/list";
+    }
+    @PostMapping("/{id}/update")
     public String update(@PathVariable Long id, ArticleDto articleDto, Model model){
         log.info("title:{}, content:{}", articleDto.getTitle(), articleDto.getContent());
         Article article = articleRepository.save(articleDto.toEntity());
