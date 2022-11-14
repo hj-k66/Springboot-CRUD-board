@@ -18,6 +18,14 @@ class HospitalRepositoryTest {
     HospitalRepository hospitalRepository;
 
     @Test
+    @DisplayName("병상 수가 10개 이상 20개 미만인 병원을 내림차순으로 정렬")
+    void findByPatientRoomCountOrderByDesc(){
+        List<Hospital> hospitals = hospitalRepository.findByPatientRoomCountBetweenOrderByPatientRoomCountDesc(10,19);
+        for(Hospital hospital:hospitals){
+            System.out.println(hospital.getHospitalName() +"|"+ hospital.getPatientRoomCount());
+        }
+    }
+    @Test
     @DisplayName("병상 수가 10개 이상 20개 미만인 병원을 모두 찾기")
     void findByPatientRoomCount(){
         List<Hospital> hospitals = hospitalRepository.findByPatientRoomCountBetween(10, 19);
