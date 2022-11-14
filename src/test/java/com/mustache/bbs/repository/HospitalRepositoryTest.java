@@ -17,7 +17,14 @@ class HospitalRepositoryTest {
     @Autowired
     HospitalRepository hospitalRepository;
 
-
+    @Test
+    @DisplayName("병상 수가 10개 이상 20개 미만인 병원을 모두 찾기")
+    void findByPatientRoomCount(){
+        List<Hospital> hospitals = hospitalRepository.findByPatientRoomCountBetween(10, 19);
+        for(Hospital hospital:hospitals){
+            System.out.println(hospital.getHospitalName() +"|"+ hospital.getPatientRoomCount());
+        }
+    }
 
     @Test
     @DisplayName("특정 구:광진구의 보건진료소, 보건지소, 보건소 모두 찾기")
@@ -26,7 +33,7 @@ class HospitalRepositoryTest {
         inClues.add("보건소");
         inClues.add("보건지소");
         inClues.add("보건진료소");
-        String district = "광진구";
+        String district = "송파구";
         List<Hospital> hospitals = hospitalRepository.findByBusinessTypeNameInAndRoadNameAddressContaining(inClues, district);
         for(Hospital hospital:hospitals){
             System.out.println(hospital.getHospitalName());
