@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,5 +24,17 @@ class HospitalRepositoryTest {
         Hospital hp = hospital.get();
         System.out.println(hp.getId());
         assertEquals(1, hp.getId());
+    }
+
+    @Test
+    void findByBusinessName(){
+        List<String> inClues = new ArrayList<>();
+        inClues.add("보건소");
+        inClues.add("보건지소");
+        inClues.add("보건진료소");
+        List<Hospital> byBusinessTypeNameIn = hospitalRepository.findByBusinessTypeNameIn(inClues);
+        for(Hospital hospital : byBusinessTypeNameIn){
+            System.out.println(hospital.getHospitalName());
+        }
     }
 }

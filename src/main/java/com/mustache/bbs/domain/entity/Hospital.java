@@ -19,4 +19,8 @@ public class Hospital {
 
     @Column(name = "hospital_name")
     private String hospitalName;
+
+    @Column(name = "business_type_name")
+    private String businessTypeName;
+
 }
