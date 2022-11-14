@@ -17,6 +17,22 @@ class HospitalRepositoryTest {
     @Autowired
     HospitalRepository hospitalRepository;
 
+
+
+    @Test
+    @DisplayName("특정 구:광진구의 보건진료소, 보건지소, 보건소 모두 찾기")
+    void findByBusinessTypeNameAndDistrict(){
+        List<String> inClues = new ArrayList<>();
+        inClues.add("보건소");
+        inClues.add("보건지소");
+        inClues.add("보건진료소");
+        String district = "광진구";
+        List<Hospital> hospitals = hospitalRepository.findByBusinessTypeNameInAndRoadNameAddressContaining(inClues, district);
+        for(Hospital hospital:hospitals){
+            System.out.println(hospital.getHospitalName());
+        }
+    }
+
     @Test
     @DisplayName("DB에서 값을 잘 가져오는지 확인")
     void findById() {
