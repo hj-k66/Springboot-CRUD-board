@@ -1,5 +1,6 @@
 package com.mustache.bbs.domain.entity;
 
+import com.mustache.bbs.domain.dto.HospitalResponse;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -25,5 +26,14 @@ public class Hospital {
 
     @Column(name = "patient_room_count")
     private int patientRoomCount;
+
+
+    private Integer totalNumberOfBeds;
+    private Float totalAreaSize;
+
+    public static HospitalResponse of(Hospital hospital){
+        return new HospitalResponse(hospital.getId(), hospital.getRoadNameAddress(),hospital.getHospitalName(), hospital.getPatientRoomCount(),
+                hospital.getTotalNumberOfBeds(), hospital.getBusinessTypeName(),hospital.getTotalAreaSize());
+    }
 
 }
