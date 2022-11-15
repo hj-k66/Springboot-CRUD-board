@@ -30,6 +30,7 @@ public class Hospital {
 
     private Integer totalNumberOfBeds;
     private Float totalAreaSize;
+    private Integer businessStatusCode;
 
     public static HospitalResponse of(Hospital hospital){
         return new HospitalResponse(hospital.getId(), hospital.getRoadNameAddress(),hospital.getHospitalName(), hospital.getPatientRoomCount(),
