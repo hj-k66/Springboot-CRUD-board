@@ -1,21 +1,21 @@
 package com.mustache.bbs.domain.entity;
 
 import com.mustache.bbs.domain.dto.ArticleDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @AllArgsConstructor
+@Builder
 public class Article {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
