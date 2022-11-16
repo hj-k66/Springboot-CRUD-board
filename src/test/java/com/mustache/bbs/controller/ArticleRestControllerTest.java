@@ -32,7 +32,7 @@ class ArticleRestControllerTest {
                 .title("제목이다!")
                 .content("내용이다!")
                 .build();
-        given(articleService.byPass(1))
+        given(articleService.getArticle(1L))
                 .willReturn(articleDto);
 
         Long articleId = 1L;
@@ -44,7 +44,7 @@ class ArticleRestControllerTest {
                 .andExpect(jsonPath("$.title").value("제목이다!"))
                 .andDo(print());
 
-        verify(articleService).byPass(articleId);
+        verify(articleService).getArticle(articleId);
 
     }
 
