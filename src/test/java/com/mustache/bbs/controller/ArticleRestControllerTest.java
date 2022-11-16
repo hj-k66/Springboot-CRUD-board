@@ -36,7 +36,7 @@ class ArticleRestControllerTest {
                 .willReturn(articleDto);
 
         Long articleId = 1L;
-        String url = String.format("/api/vi/articles/%d", articleId);
+        String url = String.format("/api/v1/articles/%d", articleId);
 
         mockMvc.perform(get(url))
                 .andExpect(status().isOk())
