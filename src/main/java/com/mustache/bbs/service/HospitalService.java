@@ -5,6 +5,7 @@ import com.mustache.bbs.domain.entity.Hospital;
 import com.mustache.bbs.repository.HospitalRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class HospitalService {
@@ -13,6 +14,7 @@ public class HospitalService {
     public HospitalService(HospitalRepository hospitalRepository) {
         this.hospitalRepository = hospitalRepository;
     }
+
 
    public HospitalResponse getHospital(Integer id){
        Optional<Hospital> opthospital = hospitalRepository.findById(id);
