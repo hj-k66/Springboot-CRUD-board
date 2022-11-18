@@ -1,6 +1,6 @@
 {{>layout/header}}
 <div>
-    <form class="d-flex" role="search" action="/hospitals", method="get">
+    <form class="d-flex" role="search" action="/hospitals" , method="get">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
@@ -24,7 +24,13 @@
     </tbody>
 </table>
 <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
-    <a href="?page={{previous}}" type="button" class="btn btn-outline-dark">Previous</a>
-    <a href="?page={{next}}" type="button" class="btn btn-outline-dark">Next</a>
+    {{#keyword}}
+        <a href="?page={{previous}}&keyword={{keyword}}" type="button" class="btn btn-outline-dark">Previous</a>
+        <a href="?page={{next}}&keyword={{keyword}}" type="button" class="btn btn-outline-dark">Next</a>
+    {{/keyword}}
+    {{^keyword}}
+        <a href="?page={{previous}}" type="button" class="btn btn-outline-dark">Previous</a>
+        <a href="?page={{next}}" type="button" class="btn btn-outline-dark">Next</a>
+    {{/keyword}}
 </div>
 {{>layout/footer}}

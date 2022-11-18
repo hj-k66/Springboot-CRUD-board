@@ -27,9 +27,10 @@ public class HospitalController {
     }
 
     @GetMapping("")
-    public String getHospitalByKeyword(@RequestParam String keyword, Model model, Pageable pageable) {
+    public String getHospitalByKeyword(@RequestParam(required = false) String keyword, Model model, Pageable pageable) {
         log.info("keyword:{}", keyword);
         Page<Hospital> hospitals = hospitalRepository.findByRoadNameAddressContaining(keyword, pageable);
+        model.addAttribute("keyword", keyword);
         model.addAttribute("hospitals", hospitals);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
@@ -37,15 +38,15 @@ public class HospitalController {
 
     }
 
-
-    // Model에 hospital 정보 + page 정보를 같이 전달한다.
-    @GetMapping("/list")
-    public String hospitalList(Model model, Pageable pageable) {
-        Page<Hospital> hospitals = hospitalRepository.findAll(pageable);
-        log.info("size:{}", hospitals.getSize());
-        model.addAttribute("hospitals", hospitals);
-        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next", pageable.next().getPageNumber());
-        return "hospital/list";
-    }
+//
+//    // Model에 hospital 정보 + page 정보를 같이 전달한다.
+//    @GetMapping("/list")
+//    public String hospitalList(Model model, Pageable pageable) {
+//        Page<Hospital> hospitals = hospitalRepository.findAll(pageable);
+//        log.info("size:{}", hospitals.getSize());
+//        model.addAttribute("hospitals", hospitals);
+//        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+//        model.addAttribute("next", pageable.next().getPageNumber());
+//        return "hospital/list";
+//    }
 }
